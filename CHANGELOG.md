@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.0 - 2026-09-16
+
+- Replaced the native right-click menu with a proper UI: click the tray
+  icon (either button) to open a small always-on-top dashboard card next
+  to the cursor, like the OneDrive/battery/volume flyouts.
+- The card follows Windows' light/dark app theme and fills with a soft
+  green-to-sand gradient; it resizes to fit however many servers are
+  running and caps the list at 8 rows with a "+N more" overflow line.
+- Click a row to open that server's port in your browser; Refresh and
+  Quit live as links in the card's footer.
+
 ## v0.1.0 - 2026-09-16
 
 - Initial release: tray icon that lists every running Node.js process with
