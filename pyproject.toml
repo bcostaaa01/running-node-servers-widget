@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "node-server-tray"
-version = "0.2.0"
+version = "0.3.0"
 description = "Windows system tray icon listing every running Node.js dev server, its port, and which project it belongs to."
 readme = "README.md"
 license = { text = "MIT" }

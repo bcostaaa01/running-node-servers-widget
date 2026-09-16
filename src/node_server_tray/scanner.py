@@ -42,6 +42,21 @@ def _project_name(proc: psutil.Process) -> str:
     return cmdline[-1] if cmdline else "node"
 
 
+def kill_process(pid: int) -> bool:
+    """Forcibly stops a single Node process (TerminateProcess on Windows is
+    immediate, no graceful-shutdown phase to wait out). Returns True if the
+    process is gone -- or already was -- and False if it couldn't be killed,
+    e.g. it belongs to another user and access was denied."""
+
+    try:
+        psutil.Process(pid).terminate()
+    except psutil.NoSuchProcess:
+        return True
+    except psutil.AccessDenied:
+        return False
+    return True
+
+
 def scan_node_servers() -> list[NodeServer]:
     """One entry per running Node process with at least one open listening
     port, sorted by lowest port number."""

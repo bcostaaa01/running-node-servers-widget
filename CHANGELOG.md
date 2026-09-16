@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.0 - 2026-09-16
+
+- Added a per-row kill button (small "✕" next to the PID) that stops
+  just that one Node process, instead of having to kill every `node.exe`
+  at once. Turns red on hover; the list refreshes right after.
+
 ## v0.2.0 - 2026-09-16
 
 - Replaced the native right-click menu with a proper UI: click the tray

@@ -18,7 +18,7 @@ from PIL import ImageTk
 
 from . import colors, dpi, theme
 from .gradient import render_card, tone_between
-from .scanner import NodeServer
+from .scanner import NodeServer, kill_process
 
 _FONT = "Segoe UI"
 
@@ -135,13 +135,17 @@ class Dashboard:
 
         bg = c.create_rectangle(x1 - self._s(6), y - self._s(4), x2 + self._s(6), y + row_h - self._s(6), fill=idle_fill, outline="")
 
+        kill_item = c.create_text(x2, y, anchor="ne", text="✕", fill=pal.fg_faint, font=(_FONT, 9))
+        kx1, _ky1, _kx2, _ky2 = c.bbox(kill_item)
+        pid_item = c.create_text(kx1 - self._s(10), y, anchor="ne", text=f"pid {server.pid}", fill=pal.fg_faint, font=(_FONT, 8))
+
         port_item = c.create_text(x1, y, anchor="nw", text=ports, fill=pal.accent, font=(_FONT, 10, "bold"))
         _px1, _py1, px2, _py2 = c.bbox(port_item)
         name_item = c.create_text(px2 + self._s(8), y, anchor="nw", text=server.name, fill=pal.fg_primary, font=(_FONT, 10))
-        pid_item = c.create_text(x2, y, anchor="ne", text=f"pid {server.pid}", fill=pal.fg_faint, font=(_FONT, 8))
 
         c.tag_lower(bg)
         port = server.ports[0]
+        pid = server.pid
 
         def _open(_e=None):
             webbrowser.open(f"http://localhost:{port}")
@@ -162,6 +166,25 @@ class Dashboard:
             c.tag_bind(item, "<Enter>", _enter)
             c.tag_bind(item, "<Leave>", _leave)
             c.tag_bind(item, "<Button-1>", _open)
+
+        # The kill button sits on top of `bg` at that one spot, so it gets
+        # its own Enter/Leave/click instead of the row's -- clicking it
+        # stops the server rather than opening it in a browser.
+        def _kill_enter(_e=None):
+            c.itemconfig(kill_item, fill=pal.link_quit_hover)
+            c.config(cursor="hand2")
+
+        def _kill_leave(_e=None):
+            c.itemconfig(kill_item, fill=pal.fg_faint)
+            c.config(cursor="")
+
+        def _kill(_e=None):
+            kill_process(pid)
+            self._on_refresh()
+
+        c.tag_bind(kill_item, "<Enter>", _kill_enter)
+        c.tag_bind(kill_item, "<Leave>", _kill_leave)
+        c.tag_bind(kill_item, "<Button-1>", _kill)
 
         return y + row_h
 

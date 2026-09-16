@@ -4,7 +4,7 @@ A Windows system tray icon that lists every Node.js process currently
 listening on a port, so you can tell at a glance which dev servers are
 running when you've got several frontend projects open at once.
 
-## What you get (v0.2)
+## What you get (v0.3)
 
 - A tray icon that scans running `node.exe` processes for open listening
   ports every few seconds.
@@ -15,6 +15,8 @@ running when you've got several frontend projects open at once.
 - The card follows your Windows light/dark app theme and fills with a
   soft green-to-sand gradient.
 - Click a row to open `http://localhost:<port>` in your default browser.
+- Click the small "✕" next to a row's PID to kill just that one process --
+  no need to kill every `node.exe` at once to free up one port.
 - Refresh and Quit live as links in the card's footer; Escape or clicking
   elsewhere closes it.
 - Hover the tray icon for a one-line tooltip summary of the active ports.
