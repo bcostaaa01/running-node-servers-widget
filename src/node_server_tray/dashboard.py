@@ -148,10 +148,14 @@ class Dashboard:
 
         def _enter(_e=None):
             c.itemconfig(bg, fill=pal.hover_bg)
+            c.itemconfig(port_item, fill=pal.accent_hover)
+            c.itemconfig(name_item, font=(_FONT, 10, "underline"))
             c.config(cursor="hand2")
 
         def _leave(_e=None):
             c.itemconfig(bg, fill=idle_fill)
+            c.itemconfig(port_item, fill=pal.accent)
+            c.itemconfig(name_item, font=(_FONT, 10))
             c.config(cursor="")
 
         for item in (bg, port_item, name_item, pid_item):

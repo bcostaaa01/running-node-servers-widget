@@ -15,6 +15,7 @@ class Palette:
     fg_faint: str
     hover_bg: str
     accent: str
+    accent_hover: str
     link_refresh: str
     link_refresh_hover: str
     link_quit: str
@@ -30,6 +31,7 @@ DARK = Palette(
     fg_faint="#847f6c",
     hover_bg="#3d4a34",
     accent="#7fd48f",
+    accent_hover="#a3e6ad",
     link_refresh="#8ab4f8",
     link_refresh_hover="#b7d3fc",
     link_quit="#d77a7a",
@@ -45,6 +47,7 @@ LIGHT = Palette(
     fg_faint="#8f8d7e",
     hover_bg="#d9e8ce",
     accent="#1f9d4a",
+    accent_hover="#2fbb5c",
     link_refresh="#2f6fe0",
     link_refresh_hover="#4d84ea",
     link_quit="#c23b3b",
