@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "node-server-tray"
+version = "0.1.0"
+description = "Windows system tray icon listing every running Node.js dev server, its port, and which project it belongs to."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "pystray>=0.19.5",
+    "Pillow>=10.0.0",
+    "psutil>=5.9.0",
+]
+
+[project.gui-scripts]
+node-server-tray = "node_server_tray.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
