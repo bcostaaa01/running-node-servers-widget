@@ -4,6 +4,8 @@ A Windows system tray icon that lists every Node.js process currently
 listening on a port, so you can tell at a glance which dev servers are
 running when you've got several frontend projects open at once.
 
+![Dashboard card listing running Node servers by port and project](screenshot.png)
+
 ## What you get (v0.3)
 
 - A tray icon that scans running `node.exe` processes for open listening
